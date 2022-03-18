@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tributo, Distrito
+from .models import Tribute, District
 
-admin.site.register(Tributo)
-admin.site.register(Distrito)
+admin.site.register(Tribute)
+admin.site.register(District)
