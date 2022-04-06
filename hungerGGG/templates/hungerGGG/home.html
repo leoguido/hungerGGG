@@ -9,7 +9,6 @@
     <title>Home</title>
 </head>
 <body>
-    {% csrf_token %}
     <div style="margin: 0 650px;">
         <label for="tributes_number">Number of tributes</label>
         <input type="number" name="tributes_number" id="input_tributes_number">
@@ -18,33 +17,19 @@
         <button id="bt_send_tributes_number">OK</button>
     </div>
 
-    <div id="tribute_forms">
+    <form method="POST">
+        {% csrf_token %}
+        <div id="tribute_forms">
 
-    </div>
+        </div>
+        <input type="submit" value="continue">
+    </form>
+
+
 </body>
 
 <script src="{% static '/jquery.js' %}"> </script>
 
-<script>
-    const csrf = document.getElementsByName("csrfmiddlewaretoken")[0].value
-
-    $('#bt_send_tributes_number').click(function(){
-
-        n = $('#input_tributes_number').val();
-
-        if( n > 0 && n != '' ){
-            $.ajax({
-                url :'/send/tributes/number/',
-                type:'POST',
-                data: {'csrfmiddlewaretoken':csrf , 'tributes':n},
-                success: function(html){
-                    $('#tribute_forms').append(html);
-                    $('#bt_send_tributes_number').prop('disabled', true);
-                }
-            });
-        }
-    });
-    
-</script>
+<script src="{% static '/home.js' %}"></script>
 
 </html>
